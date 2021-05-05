@@ -1,0 +1,35 @@
+version: '3.8'
+
+networks:
+  local:
+
+services:
+  fruit:
+    container_name: "fruit"
+    image: serrodcal/quarkus-fruit-performance:1.0.0
+    ports:
+      - "8080:8080"
+    environment:
+      - DATABASE_URL=vertx-reactive:postgresql://potgres:5432/quarkus_test
+    networks:
+      - local
+    depends_on:
+      - potgres
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 300M
+        reservations:
+          memory: 300M
+  potgres:
+    container_name: "potgres"
+    image: postgres:10.15-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=quarkus_test
+      - POSTGRES_PASSWORD=quarkus_test
+      - POSTGRES_DB=quarkus_test
+    networks:
+      - local
