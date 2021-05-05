@@ -1,4 +1,4 @@
-gatling-maven-plugin-demo
+gatling-demo
 =========================
 
 Simple showcase of a maven project using the gatling-maven-plugin.
