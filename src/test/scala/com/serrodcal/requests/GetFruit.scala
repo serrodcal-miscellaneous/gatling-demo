@@ -6,9 +6,8 @@ import io.gatling.http.Predef._
 
 object GetFruit {
 
-  val request = exec( session => session.set("id", session("fruitId").as[String]))
-    .exec(http("getFruits")
-    .get("/fruits/${id}")
+  val request = exec(http("getFruits")
+    .get(session => "/fruits/" + session("fruitId").as[String]) // First way of getting parameters from a previous response using the session
     .check(status.is(200))
     .check(jsonPath("$.id").exists)
     .check(jsonPath("$.name").exists)
