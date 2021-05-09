@@ -9,6 +9,7 @@ import scala.concurrent.duration._
 class FruitSimulation extends Simulation {
 
   val httpProtocol = http
+    .enableHttp2 // Experimental and only with Java9+
     .baseUrl(LoadTestConfiguration.baseUrl)
 
   val scn = scenario("FruitSimulation")
