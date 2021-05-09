@@ -10,11 +10,11 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - DATABASE_URL=vertx-reactive:postgresql://potgres:5432/quarkus_test
+      - DATABASE_URL=vertx-reactive:postgresql://postgres:5432/quarkus_test
     networks:
       - local
     depends_on:
-      - potgres
+      - postgres
     deploy:
       resources:
         limits:
@@ -22,8 +22,8 @@ services:
           memory: 300M
         reservations:
           memory: 300M
-  potgres:
-    container_name: "potgres"
+  postgres:
+    container_name: "postgres"
     image: postgres:10.15-alpine
     ports:
       - "5432:5432"
